@@ -6,4 +6,6 @@ internal data class ImageInfo(
     val width: Int,
     val height: Int,
     val image: BufferedImage
-)
+) {
+    constructor(size: Int, image: BufferedImage) : this(size, size, image)
+}

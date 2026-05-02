@@ -12,33 +12,10 @@ internal class ImageProcessor {
         return ImageInfo(width = image.width, height = image.height, image = image)
     }
 
-    fun resize(
-        imageInfo: ImageInfo,
-        outputDirectory: File,
-        variants: List<ScaleVariant>
-    ): List<File> {
-        return variants.map { variant ->
-            val directory = if (variant.directoryName == ".") {
-                outputDirectory
-            } else {
-                outputDirectory.resolve(variant.directoryName)
-            }
+    fun scale(image: BufferedImage, size: Int): BufferedImage = scale(image = image, width = size, height = size)
 
-            directory.mkdirs()
-
-            val file = directory.resolve(variant.fileName)
-            val scaledImage = imageInfo.image.scale(variant.sizePx)
-
-            ImageIO.write(scaledImage, file.extension, file)
-
-            file
-        }
-    }
-
-    private fun BufferedImage.scale(size: Int): BufferedImage = scale(width = size, height = size)
-
-    private fun BufferedImage.scale(width: Int, height: Int): BufferedImage {
-        val scaledImage = getScaledInstance(width, height, Image.SCALE_SMOOTH)
+    fun scale(image: BufferedImage, width: Int, height: Int): BufferedImage {
+        val scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH)
         val bufferedImage = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
         val graphics = bufferedImage.createGraphics()
 
@@ -49,5 +26,19 @@ internal class ImageProcessor {
         }
 
         return bufferedImage
+    }
+
+    fun write(image: BufferedImage, outputDirectory: File, directoryName: String, fileName: String) {
+        val directory = if (directoryName == ".") {
+            outputDirectory
+        } else {
+            outputDirectory.resolve(directoryName)
+        }
+
+        directory.mkdirs()
+
+        val file = directory.resolve(fileName)
+
+        ImageIO.write(image, file.extension, file)
     }
 }
