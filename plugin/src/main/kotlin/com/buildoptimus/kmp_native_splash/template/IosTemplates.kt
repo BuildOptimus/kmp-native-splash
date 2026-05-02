@@ -1,4 +1,4 @@
-package com.buildoptimus.kmp_native_splash.templates
+package com.buildoptimus.kmp_native_splash.template
 
 import com.buildoptimus.kmp_native_splash.color.PlatformColor
 import com.buildoptimus.kmp_native_splash.image.ImageDefaults

@@ -1,7 +1,7 @@
 package com.buildoptimus.kmp_native_splash.task
 
 import com.buildoptimus.kmp_native_splash.image.*
-import com.buildoptimus.kmp_native_splash.templates.AndroidTemplates
+import com.buildoptimus.kmp_native_splash.template.AndroidTemplates
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import java.io.File
