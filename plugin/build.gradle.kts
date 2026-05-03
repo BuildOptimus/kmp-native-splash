@@ -1,6 +1,10 @@
 plugins {
     `kotlin-dsl`
+    `maven-publish`
 }
+
+group = "com.buildoptimus"
+version = "0.0.1"
 
 repositories {
     mavenCentral()
