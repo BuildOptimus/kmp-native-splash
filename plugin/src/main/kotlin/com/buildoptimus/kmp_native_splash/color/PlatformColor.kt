@@ -1,11 +1,13 @@
 package com.buildoptimus.kmp_native_splash.color
 
+import java.io.Serializable
+
 internal data class PlatformColor(
     val red: Int = 0,
     val green: Int = 0,
     val blue: Int = 0,
     val alpha: Int = 255
-) {
+) : Serializable {
     fun toAndroidHex(): String {
         return "#%02X%02X%02X%02X".format(alpha, red, green, blue)
     }
