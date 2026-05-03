@@ -11,7 +11,7 @@ import java.io.IOException
 internal abstract class IosTask : DefaultTask(), SplashTask {
     init {
         group = TaskDefaults.GROUP
-        description = "Generates iOS splash screen resources."
+        description = TaskDefaults.IOS_TASK_DESCRIPTION
     }
 
     @TaskAction

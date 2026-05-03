@@ -9,7 +9,7 @@ import java.io.File
 internal abstract class AndroidTask : DefaultTask(), SplashTask {
     init {
         group = TaskDefaults.GROUP
-        description = "Generates Android splash screen resources."
+        description = TaskDefaults.ANDROID_TASK_DESCRIPTION
     }
 
     @TaskAction
