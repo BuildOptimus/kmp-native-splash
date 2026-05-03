@@ -5,6 +5,7 @@ import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.property
 import javax.inject.Inject
 
+@ExtensionConfigDslMarker
 abstract class AndroidExtensionConfig @Inject constructor(objectFactory: ObjectFactory) :
     PlatformExtensionConfig(objectFactory) {
     val resourceDirectory: Property<String> = objectFactory.property<String>().convention("src/androidMain/res")

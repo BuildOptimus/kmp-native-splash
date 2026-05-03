@@ -5,6 +5,7 @@ import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.property
 import javax.inject.Inject
 
+@ExtensionConfigDslMarker
 abstract class DefaultExtensionConfig @Inject constructor(objectFactory: ObjectFactory) :
     PlatformExtensionConfig(objectFactory) {
     val composeResourceDirectory: Property<String> =

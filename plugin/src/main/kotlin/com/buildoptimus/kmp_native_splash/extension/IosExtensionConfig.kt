@@ -5,6 +5,7 @@ import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.property
 import javax.inject.Inject
 
+@ExtensionConfigDslMarker
 abstract class IosExtensionConfig @Inject constructor(objectFactory: ObjectFactory) :
     PlatformExtensionConfig(objectFactory) {
     val projectDirectory: Property<String> = objectFactory.property<String>().convention("../iosApp")
