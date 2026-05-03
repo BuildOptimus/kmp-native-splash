@@ -4,10 +4,12 @@ import com.buildoptimus.kmp_native_splash.image.*
 import com.buildoptimus.kmp_native_splash.template.IosTemplates
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import org.gradle.work.DisableCachingByDefault
 import java.awt.image.BufferedImage
 import java.io.File
 import java.io.IOException
 
+@DisableCachingByDefault(because = "Splash task does not take long to execute")
 internal abstract class IosTask : DefaultTask(), SplashTask {
     init {
         group = TaskDefaults.GROUP
