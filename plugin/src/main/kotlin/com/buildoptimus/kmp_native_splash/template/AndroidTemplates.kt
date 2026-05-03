@@ -41,7 +41,7 @@ internal object AndroidTemplates {
             """.trimMargin()
         } else {
             """
-            |        <item name="android:windowBackground">@drawable/launch_background</item>$fullscreenItem
+            |        <item name="android:windowBackground">@drawable/splash_background</item>$fullscreenItem
             """.trimMargin()
         }
 

@@ -98,7 +98,7 @@ internal abstract class AndroidTask : DefaultTask(), SplashTask {
 
         val drawableDirectory = targetDirectory.resolve("drawable").apply { mkdirs() }
 
-        val drawableFile = drawableDirectory.resolve("launch_background.xml")
+        val drawableFile = drawableDirectory.resolve("splash_background.xml")
         drawableFile.writeText(AndroidTemplates.launchBackgroundXml())
 
         val styleFile = valuesDirectory.resolve("splash_styles.xml")
@@ -118,7 +118,7 @@ internal abstract class AndroidTask : DefaultTask(), SplashTask {
 
         val nightDrawableDirectory = targetDirectory.resolve("drawable-night").apply { mkdirs() }
 
-        val nightDrawableFile = nightDrawableDirectory.resolve("launch_background.xml")
+        val nightDrawableFile = nightDrawableDirectory.resolve("splash_background.xml")
         nightDrawableFile.writeText(AndroidTemplates.launchBackgroundXml())
     }
 }
