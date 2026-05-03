@@ -86,7 +86,9 @@ class KmpNativeSplashPlugin : Plugin<Project> {
                     )
                 }
 
-                project.tasks.named("preBuild").configure {
+                project.tasks.matching {
+                    it.name == "preBuild"
+                }.configureEach {
                     dependsOn(task)
                 }
             }
@@ -94,7 +96,7 @@ class KmpNativeSplashPlugin : Plugin<Project> {
     }
 
     private fun registerIosTask(project: Project, extension: Extension) {
-        project.tasks.register<IosTask>(IOS_TASK_NAME) {
+        val task = project.tasks.register<IosTask>(IOS_TASK_NAME) {
             val defaultConfig = extension.defaultConfig
             val iosConfig = extension.iosConfig
 
@@ -155,6 +157,23 @@ class KmpNativeSplashPlugin : Plugin<Project> {
                 }
             )
         }
+
+        project.tasks.matching {
+            it.name.startsWith("compileKotlinIos") ||
+            (it.name.startsWith("link") && it.name.contains("Ios")) ||
+            it.name.contains("embedAndSignAppleFrameworkForXcode")
+        }.configureEach {
+            dependsOn(task)
+        }
+    }
+
+    private fun registerLifecycleTask(project: Project) {
+        project.tasks.register(LIFECYCLE_TASK_NAME) {
+            group = TaskDefaults.GROUP
+            description = TaskDefaults.LIFECYCLE_TASK_DESCRIPTION
+
+            dependsOn(ANDROID_TASK_NAME, IOS_TASK_NAME)
+        }
     }
 
     private fun getExtensionIcon(
@@ -188,14 +207,6 @@ class KmpNativeSplashPlugin : Plugin<Project> {
 
     private fun Project.layoutFile(path: String, parent: String? = null): Provider<RegularFile> {
         return layout.file(project.provider { File(parent, path) })
-    }
-
-    private fun registerLifecycleTask(project: Project) {
-        project.tasks.register(LIFECYCLE_TASK_NAME) {
-            group = TaskDefaults.GROUP
-            description = TaskDefaults.LIFECYCLE_TASK_DESCRIPTION
-            dependsOn(ANDROID_TASK_NAME, IOS_TASK_NAME)
-        }
     }
 
     companion object {
